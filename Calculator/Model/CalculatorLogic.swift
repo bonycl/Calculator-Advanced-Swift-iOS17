@@ -8,24 +8,25 @@
 
 import Foundation
 
-class CalculatorLogic {
+struct CalculatorLogic {
     
-    var number: Double
+    private var number: Double?
     
-    init(n: Double) {
-        self.number = n
+    mutating func setNumber(_ number: Double) {
+        self.number = number
     }
     
     func calculate(symbol: String) -> Double? {
         
-        
+        if let n = number {
             if symbol == "+/-" {
-                return number * -1
+                return n * -1
             } else if symbol == "AC" {
                 return 0
             } else if symbol == "%" {
-                return number * 0.01
+                return n * 0.01
             }
+        }
         return nil
     }
 }
